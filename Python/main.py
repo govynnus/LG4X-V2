@@ -216,19 +216,15 @@ class PrettyWidget(QtWidgets.QMainWindow):
         btn_preset_append.triggered.connect(lambda: self.clickOnBtnPreset(idx=3))
 
         btn_preset_save = QtWidgets.QAction('&Save', self)
-        # btn_preset_save.setShortcut('Ctrl+Shift+S')
         btn_preset_save.triggered.connect(lambda: self.clickOnBtnPreset(idx=4))
 
         btn_preset_c1s = QtWidgets.QAction('&C1s', self)
-        # btn_preset_c1s.setShortcut('Ctrl+Shift+')
         btn_preset_c1s.triggered.connect(lambda: self.clickOnBtnPreset(idx=5))
 
         btn_preset_ckedge = QtWidgets.QAction('C &K edge', self)
-        # btn_preset_ckedge.setShortcut('Ctrl+Shift+')
         btn_preset_ckedge.triggered.connect(lambda: self.clickOnBtnPreset(idx=6))
 
         btn_preset_ptable = QtWidgets.QAction('Periodic &Table', self)
-        # btn_preset_ptable.setShortcut('Ctrl+Shift+')
         btn_preset_ptable.triggered.connect(lambda: self.clickOnBtnPreset(idx=7))
 
         presetMenu.addAction(btn_preset_new)
@@ -4000,9 +3996,10 @@ class PrettyWidget(QtWidgets.QMainWindow):
                 QtWidgets.QMessageBox.warning(
                     self,
                     'Warning',
-                    'You cannot choose both Active Shirley BG and Static '
-                    'Shirley BG at the same time! Static Shirley BG set! To use Active Shirley BG, please uncheck Static '
-                    'Shirley BG!',
+                    'You cannot choose both Active Shirley BG '
+                    'and Static Shirley BG at the same time! '
+                    'Static Shirley BG set! '
+                    'To use Active Shirley BG, please uncheck Static Shirley BG!',
                 )
                 checked_action.setChecked(False)
                 idx_bg.add(0)
@@ -4026,9 +4023,10 @@ class PrettyWidget(QtWidgets.QMainWindow):
                 QtWidgets.QMessageBox.warning(
                     self,
                     'Warning',
-                    'You cannot choose both Active Tougaard BG and Static Tougaard BG at '
-                    'the same time! Static Tougaard BG set! To use Active Tougaard BG, '
-                    'please uncheck Static Tougaard BG!',
+                    'You cannot choose both Active Tougaard BG '
+                    'and Static Tougaard BG at the same time! '
+                    'Static Tougaard BG set!'
+                    'To use Active Tougaard BG, please uncheck Static Tougaard BG!',
                 )
                 idx_bg.add(1)
                 checked_action.setChecked(False)
@@ -4063,6 +4061,7 @@ class PrettyWidget(QtWidgets.QMainWindow):
             for checked_action in checked_actions:
                 if checked_action.text() == '&Static &Tougaard BG':
                     checked_action.setChecked(False)
+
         if len(checked_actions) == 0:
             QtWidgets.QMessageBox.information(
                 self,
@@ -4070,6 +4069,7 @@ class PrettyWidget(QtWidgets.QMainWindow):
                 'No background was choosen, a polynomial BG was set as default.',
             )
             idx_bg.add(2)  # if no background was selected, a polynomial will be used
+
         self.idx_bg = sorted(idx_bg)
         try:
             self.pre[0][0] = self.idx_bg
